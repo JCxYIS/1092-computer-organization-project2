@@ -19,8 +19,7 @@ run codes (助教會給?)
 
 
 ### Q5 Test the performance of write back and write through policy based on 4-way associative cache with isscc_pcm(15%)
-run `./build/X86/gem5.opt configs/example/se.py -c ./benchmark/multiply  --cpu-type=TimingSimpleCPU --caches --l2cache --mem-type=NVMainMemory --nvmain-config=../NVmain/Config/PCM_ISSCC_2012_4GB.config`
-
+run `./build/X86/gem5.opt configs/example/se.py -c ./benchmark/multiply --cpu-type=TimingSimpleCPU --caches --l2cache --l3cache --l3_assoc=4 --l1i_size=32kB --l1d_size=32kB --l2_size=128kB --l3_size=1MB --mem-type=NVMainMemory --nvmain-config=../NVmain/Config/PCM_ISSCC_2012_4GB.config` 
 
 ### Why dont do 加分題
 ![](https://i.imgur.com/H9gsGb5.jpg)
