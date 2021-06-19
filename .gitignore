@@ -1,4 +1,10 @@
-/**
+*
 !.gitignore
-!/gem5/configs/common/Caches.py
-!/gem5/README
+
+
+### Allow these stuffs but i can't add them via gitignore so i add 'em manually lol
+# gem5/configs/common/Caches.py
+# gem5/configs/common/CacheConfig.py
+# gem5/src/mem/XBar.py
+# gem5/src/cpu/BaseCPU.py
+# NVmain/Config/PCM_ISSCC_2012_4GB.config
