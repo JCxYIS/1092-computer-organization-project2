@@ -1,5 +1,6 @@
 *
 !.gitignore
+!README.md
 
 
 ### Allow these stuffs but i can't add them via gitignore so i add 'em manually lol
