@@ -1,5 +1,4 @@
 ## 祭祖 Proj2 
-> ==TODO 交作業要把這 repo 設 public? 
 
 ## Note
 
@@ -7,7 +6,14 @@
 run `./build/X86/gem5.opt configs/example/se.py -c tests/test-progs/hello/bin/x86/linux/hello --cpu-type=TimingSimpleCPU --caches --l2cache --mem-type=NVMainMemory --nvmain-config=../NVmain/Config/PCM_ISSCC_2012_4GB.config`
 
 ### Q2 Enable L3 last level cache in GEM5 + NVMAIN (15%)
-run `./build/X86/gem5.opt configs/example/se.py -c tests/test-progs/hello/bin/x86/linux/hello --cpu-type=TimingSimpleCPU --caches --l2cache --l3cache --mem-type=NVMainMemory --nvmain-config=../NVmain/Config/PCM_ISSCC_2012_4GB.config`
+
+#### Implementation
+by modifying `configs/common/Caches.py`, `configs/common/CacheConfig`, and apply in `src/mem/xbar.py`, `src/cpu/BaseCPU.py` in gem5
+
+#### Demo do
+```
+./build/X86/gem5.opt configs/example/se.py -c tests/test-progs/hello/bin/x86/linux/hello --cpu-type=TimingSimpleCPU --caches --l2cache --l3cache --mem-type=NVMainMemory --nvmain-config=../NVmain/Config/PCM_ISSCC_2012_4GB.config
+```
 
 ### Q3 Config last level cache to 2-way and full-way associative cache and test performance (15%)
 for 2-way, run `./build/X86/gem5.opt configs/example/se.py -c ./benchmark/quicksort --cpu-type=TimingSimpleCPU --caches --l2cache --l3cache --l3_assoc=2 --l1i_size=32kB --l1d_size=32kB --l2_size=128kB --l3_size=1MB --mem-type=NVMainMemory --nvmain-config=../NVmain/Config/PCM_ISSCC_2012_4GB.config`
