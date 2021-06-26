@@ -76,13 +76,17 @@ class L2Cache(Cache):
 ### STARTEDIT L3 CACHE
 
 class L3Cache(Cache):
-    assoc = 64
-    tag_latency = 32
-    data_latency = 32
-    response_latency = 32
-    mshrs = 32
-    tgts_per_mshr = 24
-    write_buffers = 16
+    assoc = 64               # Associativity
+    tag_latency = 32         # Tag lookup latency
+    data_latency = 32        # Data access latency
+    response_latency = 32    # Latency for the return path on a miss
+    mshrs = 32               # Number of MSHRs (max outstanding requests)
+    tgts_per_mshr = 24       # Max number of accesses per MSHR
+    write_buffers = 16       # Number of write buffers
+
+### STARTEDIT L3 CACHE REPLACEMENT POLICY AS RRIP
+    # replacement_policy = Param.BaseReplacementPolicy(RRIPRP(),"Replacement policy")
+### ENDEDIT L3 CACHE REPLACEMENT POLICY AS RRIP
 
 ### ENDEDIT L3 CACHE
 

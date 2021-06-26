@@ -69,14 +69,14 @@ def config_cache(options, system):
 #        dcache_class, icache_class, l2_cache_class, walk_cache_class = \
 #            L1_DCache, L1_ICache, L2Cache, None
 
-    # STARTEDIT APPLYING L3 CACHE
+### STARTEDIT APPLYING L3 CACHE
         dcache_class, icache_class, l2_cache_class, l3_cache_class = \
             O3_ARM_v7a_DCache, O3_ARM_v7a_ICache, O3_ARM_v7aL2, \
             O3_ARM_v7aL3
     else:
         dcache_class, icache_class, l2_cache_class, l3_cache_class = \
             L1_DCache, L1_ICache, L2Cache, L3Cache
-    # ENDEDIT APPLYING L3 CACHE
+### ENDEDIT APPLYING L3 CACHE
 
         if buildEnv['TARGET_ISA'] == 'x86':
             walk_cache_class = PageTableWalkerCache
@@ -92,7 +92,7 @@ def config_cache(options, system):
         fatal("When elastic trace is enabled, do not configure L2 caches.")
 
     
-    # STARTEDIT L3CACHE
+### STARTEDIT L3CACHE
     if options.l2cache and options.l3cache:
         system.l2 = l2_cache_class(clk_domain=system.cpu_clk_domain,
                                    size=options.l2_size,
@@ -112,7 +112,7 @@ def config_cache(options, system):
 
     elif options.l2cache:
     # if options.l2cache:
-    # ENDEDIT L3 CACHE 
+### ENDEDIT L3 CACHE 
     
         # Provide a clock for the L2 and the L1-to-L2 bus here as they
         # are not connected using addTwoLevelCacheHierarchy. Use the

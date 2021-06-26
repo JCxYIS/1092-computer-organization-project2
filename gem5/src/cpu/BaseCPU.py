@@ -315,7 +315,7 @@ class BaseCPU(MemObject):
         self.toL2Bus.master = self.l2cache.cpu_side
         self._cached_ports = ['l2cache.mem_side']
 
-    # STARTEDIT L3 HIERACHY
+### STARTEDIT L3 HIERACHY
     def addThreeLevelCacheHierarchy(self, ic, dc, l3c, iwc = None, dwc = None):
         self.addPrivateSplitL1Caches(ic, dc, iwc, dwc)
         self.toL3Bus = L3XBar()
@@ -323,7 +323,7 @@ class BaseCPU(MemObject):
         self.l3cache = l3c
         self.toL2Bus.master = self.l3cache.cpu_side
         self._cached_ports = ['l3cache.mem_side']
-    # ENDEDIT L3 HIERACHY
+### ENDEDIT L3 HIERACHY
 
     def createThreads(self):
         # If no ISAs have been created, assume that the user wants the

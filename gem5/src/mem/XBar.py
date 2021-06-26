@@ -148,7 +148,7 @@ class L2XBar(CoherentXBar):
     # to the first level of unified cache.
     point_of_unification = True
 
-# STARTEDIT L3 mem
+### STARTEDIT L3 mem
 class L3XBar(CoherentXBar):
     # 256-bit crossbar by default
     width = 32
@@ -159,7 +159,7 @@ class L3XBar(CoherentXBar):
     forward_latency = 0
     response_latency = 1
     snoop_response_latency = 1
-# ENDEDIT L3 mem
+### ENDEDIT L3 mem
 
 # One of the key coherent crossbar instances is the system
 # interconnect, tying together the CPU clusters, GPUs, and any I/O
