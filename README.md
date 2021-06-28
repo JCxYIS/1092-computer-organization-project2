@@ -82,6 +82,7 @@ add `--l3cache`, `--l3_size=XXX` (Optional) to previous command
 --nvmain-config=../NVmain/Config/PCM_ISSCC_2012_4GB.config
 ```
 - 比較：`stats.txt` line 586
+    - full-way 的 miss rate 反而比較高？？
 
 
 ## Q4 Modify last level cache policy based on RRIP (15%)
@@ -131,6 +132,7 @@ add `--l3cache`, `--l3_size=XXX` (Optional) to previous command
 --nvmain-config=../NVmain/Config/PCM_ISSCC_2012_4GB.config
 ```
 - 比較：`output` line 413 (and more?)
+    - 很多東西都變兩倍大
 
 ### 加分題
 ![](https://i.imgur.com/H9gsGb5.jpg)

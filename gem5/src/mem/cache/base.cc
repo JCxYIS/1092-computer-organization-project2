@@ -1059,7 +1059,7 @@ BaseCache::access(PacketPtr pkt, CacheBlk *&blk, Cycles &lat,
         blk->status |= BlkDirty;
         // if (blk->isDirty() || writebackClean) 
         writebackBlk(blk);
-///
+/// END FOWRITE
 
 
         DPRINTF(Cache, "%s new state is %s\n", __func__, blk->print());
