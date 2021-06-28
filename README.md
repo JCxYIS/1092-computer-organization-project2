@@ -129,8 +129,6 @@ add `--l3cache`, `--l3_size=XXX` (Optional) to previous command
 
 ## Q5 Test the performance of write back and write through policy based on 4-way associative cache with isscc_pcm(15%)
 ### Implementation
-改 `base.cc` 的 access
-![](https://i.imgur.com/R7s6x7l.png)
 
 ### Demo dodo
 ```sh
