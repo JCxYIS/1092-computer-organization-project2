@@ -22,7 +22,7 @@ cd gem5
 ## Q2 Enable L3 last level cache in GEM5 + NVMAIN (15%)
 
 ### Implementation
-- 改 `configs/common/Caches.py`, `configs/common/CacheConfig`：增加 L3Cache
+- 改 `configs/common/Caches.py`, `configs/common/Options.py`, `configs/common/CacheConfig.py`：增加 L3Cache
 - 改 `src/mem/xbar.py`, `src/cpu/BaseCPU.py`：把 L3 裝上 CPU 
 - recompile gem5 (`scons EXTRAS=../NVmain build/X86/gem5.opt`)
 
@@ -109,7 +109,7 @@ add `--l3cache`, `--l3_size=XXX` (Optional) to previous command
 
 ## Q5 Test the performance of write back and write through policy based on 4-way associative cache with isscc_pcm(15%)
 ### Implementation
- 
+TODO
 
 ### Demo dodo
 ```sh
@@ -118,6 +118,7 @@ add `--l3cache`, `--l3_size=XXX` (Optional) to previous command
 --caches \
 --l2cache \
 --l3cache \
+--l3_assoc=4 \
 --l1i_size=32kB \
 --l1d_size=32kB \
 --l2_size=128kB \
