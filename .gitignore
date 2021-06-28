@@ -2,6 +2,8 @@
 !.gitignore
 !README.md
 
+!_results/
+!_results/*
 
 ### Allow these stuffs but i can't add them via gitignore so i add 'em manually lol
 # gem5/configs/common/Caches.py
