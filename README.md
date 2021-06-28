@@ -1,5 +1,6 @@
 # 祭祖 Proj2 Demo Note
 ### Gem5 + NVmain
+> 致看到這行字的旅人：明年見。
 
 ## Notes
 - debugging: 在 opt 後 py 前加上 `--debug-flags=Cache`
