@@ -1048,12 +1048,20 @@ BaseCache::access(PacketPtr pkt, CacheBlk *&blk, Cycles &lat,
         // cache, we need to update the data and the block flags
         assert(blk);
         // TODO: the coherent cache can assert(!blk->isDirty());
-        if (!pkt->writeThrough()) {
-            blk->status |= BlkDirty;
-        }
+///        if (!pkt->writeThrough()) {
+///            blk->status |= BlkDirty;
+///        }
         // nothing else to do; writeback doesn't expect response
         assert(!pkt->needsResponse());
         pkt->writeDataToBlock(blk->data, blkSize);
+
+/// DO WRITE
+        blk->status |= BlkDirty;
+        // if (blk->isDirty() || writebackClean) 
+        writebackBlk(blk);
+///
+
+
         DPRINTF(Cache, "%s new state is %s\n", __func__, blk->print());
 
         incHitCount(pkt);
@@ -1062,7 +1070,7 @@ BaseCache::access(PacketPtr pkt, CacheBlk *&blk, Cycles &lat,
             pkt->payloadDelay;
         // if this a write-through packet it will be sent to cache
         // below
-        return !pkt->writeThrough();
+        return true;///!pkt->writeThrough();
     } else if (blk && (pkt->needsWritable() ? blk->isWritable() :
                        blk->isReadable())) {
         // OK to satisfy access
