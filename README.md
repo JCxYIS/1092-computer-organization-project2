@@ -1,5 +1,8 @@
 # 祭祖 Proj2 Demo Note
 
+## Notes
+- debugging: 在 opt 後 py 前加上 `--debug-flags=Cache`
+
 ## Q1 GEM5 + NVMAIN BUILD-UP (40%)
 
 ### Implementation
@@ -44,7 +47,7 @@ add `--l3cache`, `--l3_size=XXX` (Optional) to previous command
 ## Q3 Config last level cache to 2-way and full-way associative cache and test performance (15%)
 
 ### Implementation
-- 利用 `--l3_assoc` 覆寫 associativity：2-way 改 2，full-way 則改為 1 
+- 利用 `--l3_assoc` 覆寫 associativity：2-way 改 2，full-way 則改為 block count 
 - 記得 benchmark 要求 cache size 規定 
 
 ### Demo dodo
@@ -70,7 +73,7 @@ add `--l3cache`, `--l3_size=XXX` (Optional) to previous command
 --caches \
 --l2cache \
 --l3cache \
---l3_assoc=1 \
+--l3_assoc=16384 \
 --l1i_size=32kB \
 --l1d_size=32kB \
 --l2_size=128kB \
@@ -78,7 +81,7 @@ add `--l3cache`, `--l3_size=XXX` (Optional) to previous command
 --mem-type=NVMainMemory \
 --nvmain-config=../NVmain/Config/PCM_ISSCC_2012_4GB.config
 ```
-
+- 比較：`stats.txt` line 586
 
 
 ## Q4 Modify last level cache policy based on RRIP (15%)
@@ -109,11 +112,11 @@ add `--l3cache`, `--l3_size=XXX` (Optional) to previous command
 
 ## Q5 Test the performance of write back and write through policy based on 4-way associative cache with isscc_pcm(15%)
 ### Implementation
-TODO
+改 `base.cc` 的 access
 
 ### Demo dodo
 ```sh
-./build/X86/gem5.opt configs/example/se.py -c ./benchmark/multiply \
+./build/X86/gem5.opt configs/example/se.py  -c ./benchmark/multiply \
 --cpu-type=TimingSimpleCPU \
 --caches \
 --l2cache \
@@ -126,7 +129,7 @@ TODO
 --mem-type=NVMainMemory \
 --nvmain-config=../NVmain/Config/PCM_ISSCC_2012_4GB.config
 ```
-
+- 比較：`output` line 413 (and more?)
 
 ### 加分題
 ![](https://i.imgur.com/H9gsGb5.jpg)
