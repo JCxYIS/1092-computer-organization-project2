@@ -1,4 +1,5 @@
 # 祭祖 Proj2 Demo Note
+### Gem5 + NVmain
 
 ## Notes
 - debugging: 在 opt 後 py 前加上 `--debug-flags=Cache`
@@ -21,6 +22,8 @@ cd gem5
 ```
 
 
+---
+
 
 ## Q2 Enable L3 last level cache in GEM5 + NVMAIN (15%)
 
@@ -42,6 +45,12 @@ add `--l3cache`, `--l3_size=XXX` (Optional) to previous command
 --nvmain-config=../NVmain/Config/PCM_ISSCC_2012_4GB.config
 ```
 
+### Results
+水啦！出現了！L3 Cache
+![](https://i.imgur.com/X1GavPy.png)
+![](https://i.imgur.com/VOPKEBQ.png)
+
+---
 
 
 ## Q3 Config last level cache to 2-way and full-way associative cache and test performance (15%)
@@ -81,8 +90,13 @@ add `--l3cache`, `--l3_size=XXX` (Optional) to previous command
 --mem-type=NVMainMemory \
 --nvmain-config=../NVmain/Config/PCM_ISSCC_2012_4GB.config
 ```
-- 比較：`stats.txt` line 586
-    - full-way 的 miss rate 反而比較高？？
+
+### Result
+比較：`stats.txt` line 586
+![1-way](https://i.imgur.com/6sJN1MX.png)
+![2-way](https://i.imgur.com/rNuYulq.png)
+![Full-way](https://i.imgur.com/F0iQcmP.png)
+> 越多 associativity ，其 miss rate 反而比較高？？
 
 
 ## Q4 Modify last level cache policy based on RRIP (15%)
@@ -111,10 +125,11 @@ add `--l3cache`, `--l3_size=XXX` (Optional) to previous command
 ```
 
 
+
 ## Q5 Test the performance of write back and write through policy based on 4-way associative cache with isscc_pcm(15%)
 ### Implementation
 改 `base.cc` 的 access
-![](https://i.imgur.com/ywi48uz.png)
+![](https://i.imgur.com/R7s6x7l.png)
 
 ### Demo dodo
 ```sh
@@ -131,8 +146,12 @@ add `--l3cache`, `--l3_size=XXX` (Optional) to previous command
 --mem-type=NVMainMemory \
 --nvmain-config=../NVmain/Config/PCM_ISSCC_2012_4GB.config
 ```
-- 比較：`output` line 413 (and more?)
-    - 很多東西都變兩倍大
+
+#### Results
+比較：`output` line 413 (and more?)
+    
+![](https://i.imgur.com/nTFSdQW.png)
+> 很多東西都變兩倍大
 
 ### 加分題
 ![](https://i.imgur.com/H9gsGb5.jpg)
