@@ -134,7 +134,7 @@ add `--l3cache`, `--l3_size=XXX` (Optional) to previous command
 > EVERLASTING PAIN!! ETENALTY WORK!!
 
 ### Implementation
-改 `base.cc` 的 access
+`base.cc` 
 ![](https://i.imgur.com/R7s6x7l.png)
 
 ### Demo dodo
