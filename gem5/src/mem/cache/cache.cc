@@ -850,12 +850,19 @@ PacketPtr
 Cache::evictBlock(CacheBlk *blk)
 {
     // make sure the block is not marked dirty
+    // blk->status & ~BlkDirty;
 
-    PacketPtr pkt = (blk->isDirty() || writebackClean) ?
-        writebackBlk(blk) : cleanEvictBlk(blk);
+    PacketPtr pkt;
+    if(blk->isDirty() || writebackClean) {
+        // special case?  fitst blk inited
+        pkt = writebackBlk(blk);
+    }
+    else {
+        // this is what may often happens
+        pkt = cleanEvictBlk(blk);
+    }
 
     invalidateBlock(blk);
-
     return pkt;
 }
 

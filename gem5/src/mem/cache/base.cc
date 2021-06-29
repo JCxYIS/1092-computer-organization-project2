@@ -1063,6 +1063,7 @@ BaseCache::access(PacketPtr pkt, CacheBlk *&blk, Cycles &lat,
         blk->status |= BlkDirty;
         // if (blk->isDirty() || writebackClean) 
         if ( blk && blk->isDirty()) {
+
             DPRINTF(CacheVerbose, "%s: packet %s found block: %s\n",
                     __func__, pkt->print(), blk->print());
             PacketPtr wb_pkt = writecleanBlk(blk, pkt->req->getDest(), pkt->id);
