@@ -853,6 +853,9 @@ BaseCache::satisfyRequest(PacketPtr pkt, CacheBlk *blk, bool, bool)
         // supply data to any snoops that have appended themselves to
         // this cache before knowing the store will fail.
         blk->status |= BlkDirty;
+
+
+
         DPRINTF(CacheVerbose, "%s for %s (write)\n", __func__, pkt->print());
     } else if (pkt->isRead()) {
         if (pkt->isLLSC()) {
@@ -990,9 +993,9 @@ BaseCache::access(PacketPtr pkt, CacheBlk *&blk, Cycles &lat,
         // if the packet does not have sharers, it is passing
         // writable, and we got the writeback in Modified or Exclusive
         // state, if not we are in the Owned or Shared state
-        if (!pkt->hasSharers()) {
-            blk->status |= BlkWritable;
-        }
+        // if (!pkt->hasSharers()) {
+        //     blk->status |= BlkWritable;
+        // }
         // nothing else to do; writeback doesn't expect response
         assert(!pkt->needsResponse());
         pkt->writeDataToBlock(blk->data, blkSize);
@@ -1059,6 +1062,13 @@ BaseCache::access(PacketPtr pkt, CacheBlk *&blk, Cycles &lat,
 /// DO WRITE
         blk->status |= BlkDirty;
         // if (blk->isDirty() || writebackClean) 
+        if ( blk && blk->isDirty()) {
+            DPRINTF(CacheVerbose, "%s: packet %s found block: %s\n",
+                    __func__, pkt->print(), blk->print());
+            PacketPtr wb_pkt = writecleanBlk(blk, pkt->req->getDest(), pkt->id);
+            writebacks.push_back(wb_pkt);
+        // pkt->setSatisfied();
+        }
         writebackBlk(blk);
 /// END FOWRITE
 
@@ -1078,7 +1088,8 @@ BaseCache::access(PacketPtr pkt, CacheBlk *&blk, Cycles &lat,
         incHitCount(pkt);
         satisfyRequest(pkt, blk);
         maintainClusivity(pkt->fromCache(), blk);
-
+        if ( blk && blk->isDirty()) 
+            writebackBlk(blk);
         return true;
     }
 
