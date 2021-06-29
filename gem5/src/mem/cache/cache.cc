@@ -849,11 +849,20 @@ Cache::serviceMSHRTargets(MSHR *mshr, const PacketPtr pkt, CacheBlk *blk,
 PacketPtr
 Cache::evictBlock(CacheBlk *blk)
 {
-    PacketPtr pkt = (blk->isDirty() || writebackClean) ?
-        writebackBlk(blk) : cleanEvictBlk(blk);
+    // make sure the block is not marked dirty
+    // blk->status & ~BlkDirty;
+
+    PacketPtr pkt;
+    if(blk->isDirty() || writebackClean) {
+        // special case?  fitst blk inited
+        pkt = writebackBlk(blk);
+    }
+    else {
+        // this is what may often happens
+        pkt = cleanEvictBlk(blk);
+    }
 
     invalidateBlock(blk);
-
     return pkt;
 }
 
